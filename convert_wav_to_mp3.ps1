@@ -76,11 +76,15 @@ Function Convert-WavBulk {
     Write-Host "Indexing files in $($Root)..."
 
     If (Test-Path $Root) {
-        $arrWavFiles = (Get-ChildItem -Path "$($Root)" -File -Filter *.wav -Recurse).FullName
-
-        Write-Host "Starting conversion of files..."
-        ForEach($WavFile in $arrWavFiles) {
-            Convert-ToMP3 -WAVFile $WavFile
+        $arrWavFiles = @((Get-ChildItem -Path "$($Root)" -File -Filter *.wav -Recurse).FullName)
+        
+        If ($arrWavFiles.Length -gt 0) {
+            Write-Host "Starting conversion of files..."
+            ForEach($WavFile in $arrWavFiles) {
+                Convert-ToMP3 -WAVFile $WavFile
+            }
+        } else {
+            Write-Warning "No files found?"
         }
     } else {
         Write-Warning "$($Root) path not found?"
@@ -88,8 +92,8 @@ Function Convert-WavBulk {
 }
 
 #
-# convert folder "Extracted_wav_only" in-place to mp3 files.
+# convert all wav files in folder 'in-place' to mp3 files.
 # .wav files get converted, serial wise a.k.a. synchronious, to .mp3.
 # the output mp3 file is placed next to the existing wav file.
 #
-Convert-WavBulk -Root ".\extracted_wav_only"
+Convert-WavBulk -Root ".\"
