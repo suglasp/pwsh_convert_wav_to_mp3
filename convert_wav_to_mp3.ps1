@@ -1,7 +1,9 @@
 
 #
 # Pieter De Ridder
-# Script to convert wav to mp3 in a loop
+# Script to convert wav (RIFF) to mp3 (Compressed) in a loop
+# created : 25/02/2020
+# updated : 05/01/2021
 #
 
 # Global vars
@@ -73,6 +75,7 @@ Function Convert-WavBulk {
         [string]$Root
     )
 
+    Write-Host "Bulk converting wave files to mp3."
     Write-Host "Indexing files in $($Root)..."
 
     If (Test-Path $Root) {
@@ -96,4 +99,4 @@ Function Convert-WavBulk {
 # .wav files get converted, serial wise a.k.a. synchronious, to .mp3.
 # the output mp3 file is placed next to the existing wav file.
 #
-Convert-WavBulk -Root ".\"
+Convert-WavBulk -Root ".\extracted_sfx"
