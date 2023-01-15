@@ -2,6 +2,7 @@
 #
 # Pieter De Ridder
 # Script to convert wav (RIFF) to mp3 (Compressed) in a loop
+# https://github.com/suglasp/pwsh_convert_wav_to_mp3
 # created : 25/02/2020
 # updated : 15/01/2023
 #
